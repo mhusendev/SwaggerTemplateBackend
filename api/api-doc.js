@@ -2,11 +2,11 @@ const apiDoc = {
     swagger: "2.0",
     basePath: "/",
     info: {
-      title: "Todo app API.",
+      title: "Keycloak app API.",
       version: "1.0.0",
     },
     definitions: {
-      Todo: {
+      Users: {
         type: "object",
         properties: {
           id: {
