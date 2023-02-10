@@ -1,4 +1,4 @@
-// const helper = require('../.././../keycloak/helper')
+const helper = require('../.././../keycloak/helper')
 
 module.exports = function () {
     let operations = {

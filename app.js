@@ -11,7 +11,7 @@ const { initialize } = require('express-openapi');
 const swaggerUi = require('swagger-ui-express')
 var app = express();
 
-app.use(logger('dev'));
+app.use(logger('prod'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
