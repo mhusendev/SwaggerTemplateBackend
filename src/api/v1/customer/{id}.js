@@ -1,60 +1,71 @@
+const helper = require('../../../../keycloak/helper')
+
 module.exports = function () {
     let operations = {
       GET,
-      POST,
-      PUT,
-      DELETE,
     };
   
-    function GET(req, res, next) {
-      res.status(200).json([
-        { id: 0, message: "First Users" },
-        { id: 1, message: "Second Users" },
-      ]);
+    async function GET(req, res, next) {
+        var respond = await helper.getInfocustomer(req)
+        console.log(respond.status)
+        res.status(respond.status).send(respond.value)
     }
   
     function POST(req, res, next) {
-      console.log(`About to create Users: ${JSON.stringify(req.body)}`);
+      console.log(`About to create Customer: ${JSON.stringify(req.body)}`);
       res.status(201).send();
     }
   
     function PUT(req, res, next) {
-      console.log(`About to update Users id: ${JSON.stringify(req.query)}`);
-        res.status(200).json({ id: 1, message: req.query.id+" data valid" });
-      
+      console.log(`About to update Customer id: ${JSON.stringify(req.query)}`);
+        if(req.query.id == 2){
+            res.status(404).json({ id:0, error_message: " data kosong" });
+        }
+        res.status(200).json({ id:0, message: req.query.id+" data valid" });
     }
   
     function DELETE(req, res, next) {
-      console.log(`About to delete Users id: ${req.query.id}`);
+      console.log(`About to delete Customer id: ${req.query.id}`);
       res.status(200).send();
     }
   
     GET.apiDoc = {
-      summary: "Fetch users.",
-      operationId: "getusers",
+      tags: ['users'],
+      summary: "Fetch Customer.",
+      operationId: "getCustomer",
+      security: [
+        {
+          Bearer: [],
+          
+        },
+      ],
       responses: {
         200: {
-          description: "List of users.",
+          description: "Info of Customer.",
           schema: {
             type: "array",
             items: {
-              $ref: "#/definitions/Users",
+              $ref: "#/definitions/Customer",
             },
           },
         },
+        401: {
+            description: "Unauthorized"
+        }
       },
     };
   
     POST.apiDoc = {
-      summary: "Create Users.",
-      operationId: "createUsers",
+      tags: ['users'],
+      summary: "Create Customer.",
+      operationId: "createCustomer",
       consumes: ["application/json"],
       parameters: [
         {
           in: "body",
-          name: "Users",
+          name: "Customer",
           schema: {
-            $ref: "#/definitions/Users",
+            $ref: "#/definitions/Customer",
           },
         },
       ],
@@ -66,26 +77,27 @@ module.exports = function () {
     };
   
     PUT.apiDoc = {
-      summary: "Update Users.",
-      operationId: "updateUsers",
+      tags: ['users'],
+      summary: "Update Customer.",
+      operationId: "updateCustomer",
       parameters: [
         {
-          in: "query",
+          in: "path",
           name: "id",
           required: true,
-          type: "string",
+          type: "number",
         },
         {
           in: "body",
-          name: "Users",
+          name: "Customer",
           schema: {
-            $ref: "#/definitions/Users",
+            $ref: "#/definitions/Customer",
           },
         },
       ],
       responses: {
         400:{
-            description: "Fail users.",
+            description: "Fail Customer.",
             schema: {
                 type:"object",
                 properties: {
@@ -101,7 +113,7 @@ module.exports = function () {
         200: {
             description: "success update.",
             schema: {
-                type:"string",
+                type:"object",
                 properties: {
                     id: {
                         type: "number",
@@ -114,25 +126,7 @@ module.exports = function () {
           },
       },
     };
-  
-    DELETE.apiDoc = {
-      summary: "Delete Users.",
-      operationId: "deleteUsers",
-      consumes: ["application/json"],
-      parameters: [
-        {
-          in: "query",
-          name: "id",
-          required: true,
-          type: "string",
-        },
-      ],
-      responses: {
-        200: {
-          description: "Delete",
-        },
-      },
-    };
+
   
     return operations;
   };
