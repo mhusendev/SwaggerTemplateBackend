@@ -1,4 +1,5 @@
-const customerShcema = require('./schemas/customer')
+const customerSchema = require('./schemas/customer')
+const peopleSchema = require('./schemas/people')
 const apiDoc = {
   swagger: "2.0",
   tags: [{
@@ -26,5 +27,7 @@ const apiDoc = {
   paths: {}
 
 };
-apiDoc.definitions["Customer"] = customerShcema
+apiDoc.definitions["Customer"] = customerSchema
+apiDoc.definitions['People'] = peopleSchema 
+
 module.exports = apiDoc;

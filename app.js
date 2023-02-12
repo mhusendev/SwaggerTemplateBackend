@@ -1,3 +1,4 @@
+require('dotenv').config()
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -8,10 +9,12 @@ const cors = require('cors')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/customers');
 const { initialize } = require('express-openapi');
-const swaggerUi = require('swagger-ui-express')
+const swaggerUi = require('swagger-ui-express');
+const mongoose = require('mongoose')
+
 var app = express();
 
-app.use(logger('prod'));
+app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -29,6 +32,16 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/', usersRouter);
 
+mongoose.set('strictQuery', false);
+console.log(process.env.DATABASE_URL)
+mongoose.connect("mongodb://127.0.0.1:27017/dataPeople",{ 
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+const db = mongoose.connection;
+db.on('error', (error)=> console.error(error));
+db.once('open', () => console.log('Database Connected'));
+ 
 initialize({
     app,
     apiDoc: require('./src/api-doc'),
