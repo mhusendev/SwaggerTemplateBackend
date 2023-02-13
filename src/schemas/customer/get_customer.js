@@ -1,5 +1,6 @@
 let data = {
     type: "object",
+    description:'Models Response for (GET)',
     properties: {
       sub: {
         type: "string",
@@ -58,7 +59,7 @@ let data = {
         },
       },
     },
-    required: ["sub"],
+    required: ["sub","gender","phone","name","birth","day","month","year","given_name","family_name","email","alamat_info","preferred_username"],
   }
 
   module.exports = data

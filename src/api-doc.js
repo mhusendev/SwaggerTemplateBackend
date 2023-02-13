@@ -1,4 +1,6 @@
-const customerSchema = require('./schemas/customer')
+const customerSchema_get = require('./schemas/customer/get_customer')
+const customerSchema_post = require('./schemas/customer/post_customer')
+const customerSchema_put = require('./schemas/customer/put_customer')
 const peopleSchema = require('./schemas/people')
 const address = require('./schemas/address')
 const apiDoc = {
@@ -28,7 +30,9 @@ const apiDoc = {
   paths: {}
 
 };
-apiDoc.definitions["Customer"] = customerSchema
+apiDoc.definitions["customer_get"] = customerSchema_get
+apiDoc.definitions['customer_post'] = customerSchema_post
+apiDoc.definitions['customer_put'] = customerSchema_put
 apiDoc.definitions['People'] = peopleSchema 
 apiDoc.definitions['address'] = address
 

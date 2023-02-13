@@ -265,6 +265,7 @@ const register = async (data) => {
     await axios(config)
         .then((response) => {
             value = response
+            console.log(response)
         })
         .catch((error) => {
             // console.log(error)

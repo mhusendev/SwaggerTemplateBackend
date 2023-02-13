@@ -48,7 +48,7 @@ initialize({
     paths:"./src/"
 })
 app.use(
-    "/api-documentation",
+    "/api/auth/v1/api-documentation",
     swaggerUi.serve,
     (req, res,next) => {
       if(req.session.isNew) {
@@ -58,7 +58,7 @@ app.use(
    },
     swaggerUi.setup(null,{
       swaggerOptions: {
-        url: "http://localhost:3000/api-docs",
+        url: "http://localhost:3000/api/auth/v1/api-docs",
       },
     }),
   );

@@ -1,4 +1,4 @@
-const {getPeople, savePeople} = require('../../../controllers/people')
+const {getPeople, savePeople} = require('../../../../controllers/people')
 module.exports = function () {
     let operations = {
       GET,

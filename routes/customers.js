@@ -14,5 +14,8 @@ router.get('', function(req, res, next) {
 router.put('', function(req, res, next) {
   next()
 });
+router.post('', function(req,res,next){
+  next()
+})
 
 module.exports = router;

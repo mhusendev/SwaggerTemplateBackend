@@ -15,6 +15,7 @@ router.get('/customers/login', function(req, res, next) {
 });
 router.post('/customers/login', passport.authenticate('local',{failureRedirect:'/customers/login?failed=Login Gagal'}), function (req, res) {
   console.log('berhasil')
-  res.redirect(req.body.domain)
+  // res.redirect(req.body.domain)
+  res.redirect('/api-documentation')
 })
 module.exports = router;
