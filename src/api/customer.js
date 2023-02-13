@@ -1,5 +1,5 @@
-const helper = require('../../.././../keycloak/helper')
-const { register,getDataCustomer,updateDataCustomer } = require('../../../../controllers/customer_controllers')
+const helper = require('../../keycloak/helper')
+const { register,getDataCustomer,updateDataCustomer } = require('../../controllers/customer_controllers')
 
 module.exports = function () {
     let operations = {

@@ -5,6 +5,7 @@ const peopleSchema = require('./schemas/people')
 const address = require('./schemas/address')
 const apiDoc = {
   swagger: "2.0",
+  basePath:"/api/auth/v1/",
   tags: [{
     name: "users",
     description: "The Users Managing API"

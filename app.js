@@ -45,7 +45,7 @@ db.once('open', () => console.log('Database Connected'));
 initialize({
     app,
     apiDoc: require('./src/api-doc'),
-    paths:"./src/"
+    paths:"./src/api/"
 })
 app.use(
     "/api/auth/v1/api-documentation",
