@@ -51,30 +51,11 @@ let data = {
         type: "string",
       },
       alamat_info: {
-        type: "object",
-        properties: {
-          default: {
-            type: "boolean",
-          },
-          provinsi: {
-            type: "string",
-          },
-          kota: {
-            type: "string",
-          },
-          kecamatan: {
-            type: "string",
-          },
-          jalan: {
-            type: "string",
-          },
-          penerima: {
-            type: "string",
-          },
-          tlp: {
-            type: "string",
-          },
-        }
+        type: "array",
+        items: {
+          type:'object',
+          $ref: "#/definitions/address",
+        },
       },
     },
     required: ["sub"],

@@ -1,5 +1,6 @@
 const customerSchema = require('./schemas/customer')
 const peopleSchema = require('./schemas/people')
+const address = require('./schemas/address')
 const apiDoc = {
   swagger: "2.0",
   tags: [{
@@ -29,5 +30,6 @@ const apiDoc = {
 };
 apiDoc.definitions["Customer"] = customerSchema
 apiDoc.definitions['People'] = peopleSchema 
+apiDoc.definitions['address'] = address
 
 module.exports = apiDoc;

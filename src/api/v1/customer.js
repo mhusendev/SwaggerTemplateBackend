@@ -10,9 +10,9 @@ module.exports = function () {
     };
   
     async function GET(req, res, next) {
-        // var respond = await helper.getInfocustomer(req)
+        var response = await helper.getInfocustomer(req)
         // console.log(respond.status)
-        res.status(respond.status).send(respond.value)
+        res.status(response.status).send(response.value)
     }
   
     function POST(req, res, next) {
@@ -44,22 +44,25 @@ module.exports = function () {
           
         },
       ],
-      parameters: [
-        {
-          in: "path",
-          name: "id",
-          required: true,
-          type: "number",
-        },
-      ],
       responses: {
         200: {
           description: "Info of Customer.",
           schema: {
-            type: "array",
-            items: {
-              $ref: "#/definitions/Customer",
-            },
+            type: 'object',
+            properties: {
+              schema_frontend: {
+                type: 'array',
+                items: {
+                 type:'string'
+                }
+              },
+              data:{
+                type: 'object',
+                  $ref: "#/definitions/Customer",
+                
+
+              }
+            }
           },
         },
         401: {

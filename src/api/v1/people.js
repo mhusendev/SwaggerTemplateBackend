@@ -8,7 +8,7 @@ module.exports = function () {
   
     async function GET(req, res, next) {
          let getdata = await getPeople(req)
-         if(!getdata.message) return  res.status(200).send(getdata)
+         if(!getdata.message) return  res.status(200).send({ schema_frontend:[],data:getdata})
          res.send(JSON.stringify(getdata.message))
     }
    
@@ -21,16 +21,30 @@ module.exports = function () {
 
     GET.apiDoc = {
       tags: ['people'],
+      description:'test',
       summary: "Fetch People.",
       operationId: "getPeople",
       responses: {
         200: {
-          description: "Info of People.",
+          description: "menggunakan select option",
           schema: {
-            type: "array",
-            items: {
-              $ref: "#/definitions/People",
-            },
+            type: "object",
+            properties: {
+              schema_frontend: {
+                type: 'array',
+                items: {
+                 type:'string'
+                }
+              },
+              data:{
+                type: 'array',
+                items: {
+                  $ref: "#/definitions/People",
+                }
+
+              }
+            }
+            ,
           },
         },
         401: {
@@ -50,7 +64,10 @@ module.exports = function () {
           in: "body",
           name: "Customer",
           schema: {
-            $ref: "#/definitions/People",
+            type: "object",
+            items: {
+              $ref: "#/definitions/People",
+            },
           },
         },
       ],

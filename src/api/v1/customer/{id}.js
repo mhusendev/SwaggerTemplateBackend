@@ -32,7 +32,7 @@ module.exports = function () {
     GET.apiDoc = {
       tags: ['users'],
       summary: "Fetch Customer.",
-      operationId: "getCustomer",
+      operationId: "getCustomerByid",
       security: [
         {
           Bearer: [],
@@ -43,10 +43,21 @@ module.exports = function () {
         200: {
           description: "Info of Customer.",
           schema: {
-            type: "array",
-            items: {
-              $ref: "#/definitions/Customer",
-            },
+            type: 'object',
+            properties: {
+              schema_frontend: {
+                type: 'array',
+                items: {
+                 type:'string'
+                }
+              },
+              data:{
+                type: 'object',
+                  $ref: "#/definitions/Customer",
+                
+
+              }
+            }
           },
         },
         401: {
