@@ -103,4 +103,4 @@ function isJson(str) {
     }
     // return json_string;
 }
-module.exports = {getInfocustomer}
+module.exports = {getInfocustomer, useTokensession}

@@ -32,6 +32,7 @@ const authKeycloack = async (token) => {
         })
         .catch((error) => {
             console.log(error);
+            value = false
             //   res.sendStatus(401)
         });
 

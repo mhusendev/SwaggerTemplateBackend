@@ -34,7 +34,7 @@ app.use('/', usersRouter);
 
 mongoose.set('strictQuery', false);
 console.log(process.env.DATABASE_URL)
-mongoose.connect("mongodb://127.0.0.1:27017/dataPeople",{ 
+mongoose.connect(process.env.DATABASE_URL,{ 
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

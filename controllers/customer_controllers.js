@@ -96,7 +96,7 @@ const updateDataCustomer = async (req) => {
             if (query.status !== 204 || query.status !== 200 || query.status !== 201) {
                 return {status:query.status,message:query.data}
             } else {
-                res.json(  {status:204, message: "success update data" })
+                return {status:204, message: "success update data" }
             }
         } else {
             return {status:404}
