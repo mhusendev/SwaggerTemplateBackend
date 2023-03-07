@@ -4,14 +4,6 @@ const peopleSchema = require('./schemas_openapi/people')
 const apiDoc = {
   swagger: "2.0",
   basePath:"/api/",
-  tags: [{
-    name: "users",
-    description: "The Users Managing API"
-  },
-  {
-    name: "users address",
-    description: "API"
-  }],
   info: {
     title: "Keycloak app API.",
     version: "1.0.0",

@@ -6,7 +6,9 @@ let data = {
         },
         address:{
             type: 'string'
-        }
-    }
+        },
+       
+    },
+    required:['name','address']
 }
 module.exports = data
