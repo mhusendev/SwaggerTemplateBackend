@@ -1,5 +1,5 @@
 
-const peopleSchema = require('./schemas/people')
+const peopleSchema = require('./schemas_openapi/people')
 
 const apiDoc = {
   swagger: "2.0",
