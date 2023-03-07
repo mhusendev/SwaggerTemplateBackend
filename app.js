@@ -7,7 +7,7 @@ const cookieSession = require('cookie-session')
 var logger = require('morgan');
 const cors = require('cors')
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/customers');
+
 const { initialize } = require('express-openapi');
 const swaggerUi = require('swagger-ui-express');
 const mongoose = require('mongoose')
@@ -30,35 +30,35 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', indexRouter);
-app.use('/', usersRouter);
 
+// koneksi mongodb
 mongoose.set('strictQuery', false);
 console.log(process.env.DATABASE_URL)
-mongoose.connect(process.env.DATABASE_URL,{ 
+mongoose.connect(`${process.env.DATABASE_URL}`,{ 
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 const db = mongoose.connection;
 db.on('error', (error)=> console.error(error));
-db.once('open', () => console.log('Database Connected'));
- 
+db.once('open', () => console.log('Database Connected')); 
+// set swaggeropenapi (express-openapi) hanya support OAS2 format
 initialize({
     app,
     apiDoc: require('./src/api-doc'),
     paths:"./src/api/"
 })
 app.use(
-    "/api/auth/v1/api-documentation",
+    "/api/v1/api-documentation",
     swaggerUi.serve,
-    (req, res,next) => {
-      if(req.session.isNew) {
-        res.send("Dokumentasi hanya untuk yang memiliki otorisasi sebagai developer")
-      }
-      next()
-   },
+  //   (req, res,next) => {
+  //     if(req.session.isNew) {
+  //       res.send("Dokumentasi hanya untuk yang memiliki otorisasi sebagai developer")
+  //     }
+  //     next()
+  //  },
     swaggerUi.setup(null,{
       swaggerOptions: {
-        url: "http://localhost:3000/api/auth/v1/api-docs",
+        url: "http://localhost:3000/api/v1/api-docs",
       },
     }),
   );
